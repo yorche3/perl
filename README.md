@@ -9,6 +9,7 @@ Proyectos en **Perl (5.38+)**, con programas simples ejecutados con el intérpre
 | Módulo | Descripción |
 | ------ | ----------- |
 | [`core/foundations/`](core/foundations/) | **Fase 0 — Fundamentos**: `helloworld`, `hellouser`, `unit_test/calculator`, `numbers` |
+| [`core/algorithms/`](core/algorithms/) | **Fase 1 — Algoritmos Puros**: `naive_sort` |
 
 ---
 
@@ -29,6 +30,10 @@ prove --ext=.pl test/
 
 # Numbers Tests
 cd core/foundations/numbers
+prove --ext=.pl test/
+
+# Naive Sort Tests
+cd core/algorithms/naive_sort
 prove --ext=.pl test/
 ```
 
