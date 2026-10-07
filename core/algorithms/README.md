@@ -11,6 +11,7 @@ Los módulos de esta fase trabajan sobre **arrayrefs** (`[...]`), que en Perl **
 | Módulo | Especificación | Enfoque | Tests | Estado |
 |--------|---------------|---------|:-----:|:------:|
 | [`naive_sort/`](naive_sort/) | [05_Naive_Sort](https://yorche3.github.io/programming_languages/core/algorithms/05_Naive_Sort/) | `prove --ext=.pl test/` + Test2 | 3 | ✅ |
+| [`data_structures_basics/`](data_structures_basics/) | [06_Data_Structures_Basics](https://yorche3.github.io/programming_languages/core/algorithms/06_Data_Structures_Basics/) | `perl -Ilib test/data_structures_basics_tests.pl` + Test2 + Moo | 4 | ✅ |
 
 ---
 
@@ -18,11 +19,21 @@ Los módulos de esta fase trabajan sobre **arrayrefs** (`[...]`), que en Perl **
 
 ```text
 algorithms/
-└── naive_sort/                  # 05_Naive_Sort
+├── naive_sort/                  # 05_Naive_Sort
+│   ├── lib/
+│   │   └── naive_sort.pl        # selection_sort, bubble_sort, insertion_sort
+│   ├── test/
+│   │   └── naive_sort_tests.pl  # 3 tests × 8 casos
+│   └── README.md
+└── data_structures_basics/      # 06_Data_Structures_Basics
     ├── lib/
-    │   └── naive_sort.pl        # selection_sort, bubble_sort, insertion_sort
+    │   └── DataStructuresBasics/
+    │       ├── Node.pm           # Nodo enlazado compartido
+    │       ├── LinkedList.pm     # Lista enlazada manual
+    │       ├── Stack.pm          # Pila LIFO
+    │       └── Queue.pm          # Cola FIFO
     ├── test/
-    │   └── naive_sort_tests.pl  # 3 tests × 8 casos
+    │   └── data_structures_basics_tests.pl  # 4 subtests
     └── README.md
 ```
 
@@ -57,6 +68,10 @@ algorithms/
 # Naive Sort Tests
 cd naive_sort
 prove --ext=.pl test/
+
+# Data Structures Basics Tests
+cd data_structures_basics
+perl -Ilib test/data_structures_basics_tests.pl
 ```
 
 ---
