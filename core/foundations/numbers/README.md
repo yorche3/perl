@@ -10,7 +10,7 @@ Tres enfoques de implementación para los mismos 5 algoritmos: **recursivo direc
 
 | Archivo | Propósito |
 |---------|-----------|
-| [`src/numbers.pl`](src/numbers.pl) | Módulo con las 15 subrutinas (3 enfoques × 5 algoritmos) + 4 helpers `_help`. |
+| [`lib/numbers.pl`](lib/numbers.pl) | Módulo con las 15 subrutinas (3 enfoques × 5 algoritmos) + 4 helpers `_help`. |
 | [`test/recursive_tests.pl`](test/recursive_tests.pl) | Suite recursiva: 5 subtests (11 casos). |
 | [`test/iterative_tests.pl`](test/iterative_tests.pl) | Suite iterativa: 5 subtests (11 casos). |
 
@@ -18,7 +18,7 @@ Tres enfoques de implementación para los mismos 5 algoritmos: **recursivo direc
 
 ```text
 numbers/
-├── src/
+├── lib/
 │   └── numbers.pl                # 15 subrutinas + 4 helpers _help
 └── test/
     ├── recursive_tests.pl        # Tests recursivos (5 subtests, 11 casos)
@@ -27,9 +27,17 @@ numbers/
 
 ---
 
+## 📍 Desviaciones respecto a la ubicación esperada / Deviations from the expected location
+
+| Especificación | Implementación | Motivo |
+|----------------|----------------|--------|
+| `src/numbers.ext` | `lib/numbers.pl` | Cambia el directorio: el repositorio usa `lib/` para el código fuente en todos los módulos de Perl. La extensión se ajusta a la del intérprete. |
+
+---
+
 ## 🛠️ Enfoque y construcción / Approach & Build
 
-**ES:** Sigue el mismo patrón que [`calculator`](../unit_test/calculator/): módulo en `src/`, suites en `test/` y **Test2::Bundle::More** con `subtest` (un subtest por función, con sus casos dentro). Las 15 subrutinas se organizan en 3 grupos por enfoque:
+**ES:** Sigue el mismo patrón que [`calculator`](../unit_test/calculator/): módulo en `lib/`, suites en `test/` y **Test2::Bundle::More** con `subtest` (un subtest por función, con sus casos dentro). Las 15 subrutinas se organizan en 3 grupos por enfoque:
 
 | Enfoque | Sufijo | Ejemplo | ¿Tiene tests directos? |
 | ------- | ------ | ------- | :---------------------: |
@@ -37,7 +45,7 @@ numbers/
 | Recursivo con acumulador | `_acc` | `fibonacci_acc(n)` | ❌ No (ver nota TCO) |
 | Iterativo | `_ite` | `fibonacci_ite(n)` | ✅ Sí |
 
-**EN:** Follows the same pattern as [`calculator`](../unit_test/calculator/): a module in `src/`, suites in `test/`, and **Test2::Bundle::More** with `subtest` (one subtest per function, with its cases inside). The 15 subroutines are organized into 3 groups by approach:
+**EN:** Follows the same pattern as [`calculator`](../unit_test/calculator/): a module in `lib/`, suites in `test/`, and **Test2::Bundle::More** with `subtest` (one subtest per function, with its cases inside). The 15 subroutines are organized into 3 groups by approach:
 
 | Approach | Suffix | Example | Direct tests? |
 | -------- | ------ | ------- | :-----------: |
@@ -55,7 +63,7 @@ numbers/
 
 No se requieren archivos de configuración de build: el intérprete (`perl`) y el harness (`prove`) se invocan directamente desde línea de comandos.
 
-### `src/numbers.pl` — Implementación
+### `lib/numbers.pl` — Implementación
 
 **ES:** Cada algoritmo tiene 3 implementaciones en un único archivo. Los helpers del enfoque con acumulador llevan el sufijo `_help` y son internos por convención (Perl no exporta nada si no hay un `package` que lo declare). Por ejemplo, `fibonacci`:
 
@@ -131,8 +139,8 @@ subtest 'fibonacci_rec' => sub {
 ```bash
 perl --version
 
-# Instalar Test2-Suite (una sola vez)
-sudo cpan Test2::Suite
+# Instalar Test2-Suite (una sola vez, con el intérprete que ejecuta las suites)
+cpan -i Test2::Suite
 
 # Verificar instalación
 perl -MTest2::Bundle::More -e1

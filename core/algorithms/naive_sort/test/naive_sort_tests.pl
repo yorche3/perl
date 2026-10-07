@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 use FindBin;
-require "$FindBin::Bin/../src/naive_sort.pl";
+require "$FindBin::Bin/../lib/naive_sort.pl";
 
 use Test2::Bundle::More;
 

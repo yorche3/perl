@@ -8,8 +8,7 @@ use DataStructuresBasics::Node;
 #
 # Especificación: 06_Data_Structures_Basics
 #
-# Contrato del paso 4b: estado y esqueletos de las operaciones; el algoritmo es
-# del paso 5 y la suite, del 4c.
+# Implementación sobre el contrato del paso 4b: estado y operaciones.
 #
 # Adecuaciones: `new` es el `init`; `pop` y `peek` devuelven -1 con la pila
 # vacía, e `is_empty` y `size` devuelven 0. Ojo al implementar: dentro del
@@ -22,31 +21,40 @@ has count => (is => 'rw', default => sub { 0 });
 # Apila el valor sobre el tope (push).
 sub push {
     my ($self, $value) = @_;
+    my $node = DataStructuresBasics::Node->new(value => $value);
+    $node->next($self->top);
+    $self->top($node);
+    $self->count($self->count + 1);
     return;
 }
 
 # Extrae el tope, o -1 cuando la pila está vacía (pop).
 sub pop {
     my ($self) = @_;
-    return -1;
+    return -1 if $self->is_empty;
+    my $node = $self->top;
+    $self->top($node->next);
+    $self->count($self->count - 1);
+    return $node->value;
 }
 
 # Observa el tope sin extraerlo, o -1 cuando la pila está vacía (peek).
 sub peek {
     my ($self) = @_;
-    return -1;
+    return -1 if $self->is_empty;
+    return $self->top->value;
 }
 
 # Informa si la pila no tiene nodos (is_empty).
 sub is_empty {
     my ($self) = @_;
-    return 0;
+    return $self->count == 0;
 }
 
 # Número de nodos de la pila (size).
 sub size {
     my ($self) = @_;
-    return 0;
+    return $self->count;
 }
 
 1;

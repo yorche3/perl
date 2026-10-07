@@ -44,12 +44,18 @@ prove --ext=.pl test/
 | Herramienta | Instalación |
 | ----------- | ----------- |
 | [Perl 5.38+](https://www.perl.org/get.html) | `sudo apt install perl` (Linux) / incluido en macOS / [Descargar](https://www.perl.org/get.html) |
-| [Test2-Suite](https://metacpan.org/dist/Test2-Suite) | `sudo cpan Test2::Suite` (solo para proyectos con tests) |
+| [Test2-Suite](https://metacpan.org/dist/Test2-Suite) | `cpan -i Test2::Suite` (solo para proyectos con tests) |
+| [Moo](https://metacpan.org/dist/Moo) | `cpan -i Moo` (solo para `algorithms/data_structures_basics/`, que es OOP) |
+
+> **ES:** Instala siempre con el mismo intérprete que ejecuta las suites (`which perl`) y **sin `sudo`**: `sudo cpan` instala en el Perl del sistema y luego `prove` no encuentra el módulo. Con el Perl de Homebrew, la vía directa es `cpanm` (`brew install cpanminus`).
+>
+> **EN:** Always install with the same interpreter that runs the suites (`which perl`) and **without `sudo`**: `sudo cpan` installs into the system Perl and then `prove` cannot find the module. With Homebrew's Perl the direct path is `cpanm` (`brew install cpanminus`).
 
 ```bash
 # Verificar instalación
 perl --version
 perl -MTest2::Bundle::More -e1   # sin errores = Test2 listo
+perl -MMoo -e1                   # sin errores = Moo listo (data_structures_basics)
 ```
 
 ---
@@ -70,9 +76,9 @@ perl -c <File>.pl              # verificar sintaxis sin ejecutar
 
 ### 2. Proyecto con pruebas unitarias (Test2::Bundle::More + prove)
 
-**ES:** Para proyectos que requieren pruebas unitarias, se usa **Test2::Bundle::More** (el bundle más recomendado de la arquitectura Test2, desde CPAN) con `is`, `subtest` y `done_testing`. El código fuente se organiza en `src/` y las pruebas en `test/`, con `prove` como harness.
+**ES:** Para proyectos que requieren pruebas unitarias, se usa **Test2::Bundle::More** (el bundle más recomendado de la arquitectura Test2, desde CPAN) con `is`, `subtest` y `done_testing`. El código fuente se organiza en `lib/` y las pruebas en `test/`, con `prove` como harness.
 
-**EN:** For projects that require unit tests, **Test2::Bundle::More** (the most recommended bundle of the Test2 architecture, from CPAN) is used with `is`, `subtest` and `done_testing`. Source code goes in `src/` and tests in `test/`, with `prove` as the harness.
+**EN:** For projects that require unit tests, **Test2::Bundle::More** (the most recommended bundle of the Test2 architecture, from CPAN) is used with `is`, `subtest` and `done_testing`. Source code goes in `lib/` and tests in `test/`, with `prove` as the harness.
 
 ```bash
 perl test/<suite>.pl           # ejecutar una suite directa

@@ -19,7 +19,7 @@ Los módulos de esta fase trabajan sobre **arrayrefs** (`[...]`), que en Perl **
 ```text
 algorithms/
 └── naive_sort/                  # 05_Naive_Sort
-    ├── src/
+    ├── lib/
     │   └── naive_sort.pl        # selection_sort, bubble_sort, insertion_sort
     ├── test/
     │   └── naive_sort_tests.pl  # 3 tests × 8 casos
@@ -34,11 +34,11 @@ algorithms/
 |---------------|-------------|
 | **Runtime** | Perl 5.38+ (intérprete, sin paso de compilación) |
 | **CLI** | `prove --ext=.pl test/` |
-| **Andamiaje** | Manual: ✍️ `mkdir -p src test`; no hay comando de inicialización |
+| **Andamiaje** | Manual: ✍️ `mkdir -p lib test`; no hay comando de inicialización |
 | **Framework de tests** | Test2::Bundle::More (distribución Test2-Suite, CPAN) |
 | **Runner** | El harness `prove`; no hay fichero de ejecución propio ni `main()` |
-| **Separación** | `src/{modulo}.pl` (módulo) ↔ `test/` (suites `*_tests.pl`) |
-| **Acceso al módulo** | `use FindBin; require "$FindBin::Bin/../src/{modulo}.pl";` al inicio de cada suite |
+| **Separación** | `lib/{modulo}.pl` (módulo) ↔ `test/` (suites `*_tests.pl`) |
+| **Acceso al módulo** | `use FindBin; require "$FindBin::Bin/../lib/{modulo}.pl";` al inicio de cada suite |
 | **Verificación estática** | `perl -c <archivo>`, que reporta `syntax OK` |
 | **Iteración** | Bucles `for`/`while` y `last` (el `break` de Perl) |
 | **Indexación** | **0-based**, como el pseudocódigo |
