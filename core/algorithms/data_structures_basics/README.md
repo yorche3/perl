@@ -24,15 +24,15 @@ Implementación de la especificación [06_Data_Structures_Basics](../../../../do
 
 ## 🛠️ Enfoque y construcción / Approach & Build
 
-**ES:** Proyecto creado manualmente sin herramientas de scaffolding. Los módulos usan Moo para la declaración de atributos y accesores, evitando dependencias externas. La construcción es innecesaria: Perl compila en tiempo de ejecución.
+**ES:** Proyecto creado manualmente con `mkdir -p lib test`, sin herramientas de scaffolding. Los módulos usan **Moo** —la única dependencia externa— para declarar atributos y accesores. La construcción es innecesaria: Perl compila en tiempo de ejecución.
 
-**EN:** Project created manually without scaffolding tools. Modules use Moo for attribute and accessor declaration, avoiding external dependencies. Build is unnecessary: Perl compiles at runtime.
+**EN:** Project created by hand with `mkdir -p lib test`, without scaffolding tools. Modules use **Moo** —the only external dependency— to declare attributes and accessors. Build is unnecessary: Perl compiles at runtime.
 
 ## 📄 Configuración clave / Key Configuration
 
-No hay archivos de configuración, manifiestos ni dependencias externas. Moo es el único módulo externo y se instala con el gestor de paquetes del sistema o CPAN.
+**ES:** No hay archivos de configuración ni manifiestos. Las dependencias son **Moo** (los módulos) y **Test2::Suite** (`Test2::Bundle::More`, la suite); ninguna más. Se instalan con **el mismo intérprete que ejecuta las pruebas** y sin `sudo`: `cpan -i Moo` y `cpan -i Test2::Suite` (con el Perl de Homebrew, `cpanm`, que llega con `brew install cpanminus`). `sudo cpan` instalaría en el Perl del sistema y luego `prove` no encontraría los módulos.
 
-No configuration files, manifests or external dependencies. Moo is the only external module and installs with the system package manager or CPAN.
+**EN:** There are no configuration files or manifests. The dependencies are **Moo** (the modules) and **Test2::Suite** (`Test2::Bundle::More`, the suite); no others. Install them with **the same interpreter that runs the tests** and without `sudo`: `cpan -i Moo` and `cpan -i Test2::Suite` (with Homebrew's Perl, `cpanm`, installed by `brew install cpanminus`). `sudo cpan` would install into the system Perl and then `prove` would not find the modules.
 
 ## 🚀 Compilación y ejecución / Build & Run
 
@@ -101,19 +101,22 @@ ok 3 - Subtest: Stack
     ok 3 - peek con la cola vacía
     ok 4 - dequeue con la cola vacía
     ok 5 - peek devuelve el frente
-    ok 6 - dequeue devuelve 10
-    ok 7 - dequeue devuelve 20
-    ok 8 - dequeue devuelve 30
-    ok 9 - dequeue devuelve 40
-    ok 10 - is_empty tras extraer todo
-    ok 11 - size tras extraer todo
-    ok 12 - dequeue en vacío falla
+    ok 6 - size tras tres enqueue
+    ok 7 - dequeue devuelve 10
+    ok 8 - dequeue devuelve 20
+    ok 9 - dequeue devuelve 30
+    ok 10 - dequeue devuelve 40
+    ok 11 - is_empty tras extraer todo
+    ok 12 - size tras extraer todo
     ok 13 - dequeue en vacío falla
     ok 14 - is_empty sigue siendo cierto
     1..14
 ok 4 - Subtest: Queue
 1..4
 ```
+
+**ES:** 4 subtests y 49 aserciones (Node 4, LinkedList 17, Stack 14, Queue 14).
+**EN:** 4 subtests and 49 assertions (Node 4, LinkedList 17, Stack 14, Queue 14).
 
 ## 🧠 Algoritmos y operaciones / Algorithms & Operations
 
@@ -122,21 +125,21 @@ ok 4 - Subtest: Queue
 | `Node->new(value => $v)` | `value → Node` | `O(1)` | `init` idiomático de Moo; `next` es `undef` / Idiomatic Moo `init`; `next` is `undef` |
 | `$node->value` | `Node → value` | `O(1)` | Accesor de solo lectura / Read-only accessor |
 | `$node->next` | `Node → Node?` | `O(1)` | Accesor de lectura/escritura; `undef` si no hay enlace / Read-write accessor; `undef` if no link |
-| `$node->next($other)` | `Node? → Node` | `O(1)` | `set_next` idiomático; devuelve el nodo modificado / Idiomatic `set_next`; returns the modified node |
-| `LinkedList->new` | `→ LinkedList` | `O(1)` | `init` idiomático; cabeza, cola y contador a cero / Idiomatic `init`; head, tail and count to zero |
+| `$node->next($other)` | `Node? → Node` | `O(1)` | `set_next` idiomático; devuelve el valor asignado (el nodo enlazado) / Idiomatic `set_next`; returns the assigned value (the linked node) |
+| `LinkedList->new` | `→ LinkedList` | `O(1)` | `init` idiomático; cabeza y cola ausentes (`undef`) y contador a cero / Idiomatic `init`; head and tail absent (`undef`) and count zero |
 | `$list->head_value` | `LinkedList → value` | `O(1)` | `get_head` del contrato; `-1` si está vacía / Contract `get_head`; `-1` if empty |
 | `$list->insert_head($v)` | `value → void` | `O(1)` | Inserta al principio; actualiza cabeza y cola si estaba vacía / Inserts at head; updates head and tail if empty |
 | `$list->insert_tail($v)` | `value → void` | `O(1)` | Inserta al final; actualiza cabeza y cola / Inserts at tail; updates head and tail |
 | `$list->delete($v)` | `value → bool` | `O(n)` | Elimina la primera aparición; devuelve `1` en éxito, `0` si no está / Deletes first occurrence; returns `1` on success, `0` if absent |
 | `$list->is_empty` | `LinkedList → bool` | `O(1)` | `true` si el contador es cero / `true` if count is zero |
 | `$list->size` | `LinkedList → int` | `O(1)` | Número de nodos / Number of nodes |
-| `Stack->new` | `→ Stack` | `O(1)` | `init` idiomático; tope y contador a cero / Idiomatic `init`; top and count to zero |
+| `Stack->new` | `→ Stack` | `O(1)` | `init` idiomático; tope ausente (`undef`) y contador a cero / Idiomatic `init`; top absent (`undef`) and count zero |
 | `$stack->push($v)` | `value → void` | `O(1)` | Coloca el valor sobre el tope / Places value on top |
 | `$stack->pop` | `Stack → value` | `O(1)` | Extrae el tope; `-1` si está vacía / Pops top; `-1` if empty |
 | `$stack->peek` | `Stack → value` | `O(1)` | Observa el tope sin extraerlo; `-1` si está vacía / Peeks top without popping; `-1` if empty |
 | `$stack->is_empty` | `Stack → bool` | `O(1)` | `true` si el contador es cero / `true` if count is zero |
 | `$stack->size` | `Stack → int` | `O(1)` | Número de nodos / Number of nodes |
-| `Queue->new` | `→ Queue` | `O(1)` | `init` idiomático; frente, final y contador a cero / Idiomatic `init`; front, rear and count to zero |
+| `Queue->new` | `→ Queue` | `O(1)` | `init` idiomático; frente y final ausentes (`undef`) y contador a cero / Idiomatic `init`; front and rear absent (`undef`) and count zero |
 | `$queue->enqueue($v)` | `value → void` | `O(1)` | Añade por el final / Adds at rear |
 | `$queue->dequeue` | `Queue → value` | `O(1)` | Extrae el frente; `-1` si está vacía / Dequeues front; `-1` if empty |
 | `$queue->peek` | `Queue → value` | `O(1)` | Observa el frente sin extraerlo; `-1` si está vacía / Peeks front without dequeuing; `-1` if empty |
@@ -180,21 +183,21 @@ ok 4 - Subtest: Queue
 
 | Caso de la especificación / Specification case | Cubierto / Covered | Prueba / Test | Notas / Notes |
 |---|---|:--:|---|
-| **Node**: inicializar y observar valor/enlace | Sí | `data_structures_basics_tests.pl:33-36` | Verifica `value` y `next` tras `new` / Verifies `value` and `next` after `new` |
-| **Node**: inicializar otro nodo, enlazar y recorrer | Sí | `data_structures_basics_tests.pl:38-41` | Verifica `get_value(get_next(a))` y enlace de `b` / Verifies `get_value(get_next(a))` and `b`'s link |
-| **LinkedList**: estado vacío | Sí | `data_structures_basics_tests.pl:46-48` | `is_empty`, `size`, `head_value` tras `new` / `is_empty`, `size`, `head_value` after `new` |
-| **LinkedList**: insertar por ambos extremos | Sí | `data_structures_basics_tests.pl:50-54` | Cuatro inserciones y recorrido completo / Four insertions and full traversal |
-| **LinkedList**: eliminar primera aparición | Sí | `data_structures_basics_tests.pl:56-59` | `delete(10)` y verificación de recorrido y tamaño / `delete(10)` and traversal and size verification |
-| **LinkedList**: valor ausente | Sí | `data_structures_basics_tests.pl:61-64` | `delete(99)` falla sin cambiar estado / `delete(99)` fails without changing state |
-| **LinkedList**: vaciar | Sí | `data_structures_basics_tests.pl:66-72` | Tres `delete` exitosos y verificación de vacío / Three successful `delete`s and empty verification |
-| **Stack**: estado vacío y extracción fallida | Sí | `data_structures_basics_tests.pl:77-81` | `is_empty`, `size`, `peek`, `pop` tras `new` / `is_empty`, `size`, `peek`, `pop` after `new` |
-| **Stack**: LIFO y `peek` no mutante | Sí | `data_structures_basics_tests.pl:83-87` | Tres `push` y verificación de `peek` y `size` / Three `push`es and `peek` and `size` verification |
-| **Stack**: extracción y reutilización | Sí | `data_structures_basics_tests.pl:89-97` | `pop`, `push`, tres `pop` y verificación de vacío / `pop`, `push`, three `pop`s and empty verification |
-| **Stack**: vacío tras extracción | Sí | `data_structures_basics_tests.pl:99-101` | `pop` devuelve `-1` y `is_empty` sigue verdadero / `pop` returns `-1` and `is_empty` remains true |
-| **Queue**: estado vacío y extracción fallida | Sí | `data_structures_basics_tests.pl:106-110` | `is_empty`, `size`, `peek`, `dequeue` tras `new` / `is_empty`, `size`, `peek`, `dequeue` after `new` |
-| **Queue**: FIFO y `peek` no mutante | Sí | `data_structures_basics_tests.pl:112-116` | Tres `enqueue` y verificación de `peek` y `size` / Three `enqueue`s and `peek` and `size` verification |
-| **Queue**: extracción y reutilización | Sí | `data_structures_basics_tests.pl:118-126` | `dequeue`, `enqueue`, tres `dequeue` y verificación de vacío / `dequeue`, `enqueue`, three `dequeue`s and empty verification |
-| **Queue**: vacío tras extracción | Sí | `data_structures_basics_tests.pl:128-130` | `dequeue` devuelve `-1` y `is_empty` sigue verdadero / `dequeue` returns `-1` and `is_empty` remains true |
+| **Node**: inicializar y observar valor/enlace | Sí | `data_structures_basics_tests.pl:44-45` | Verifica `value` y `next` tras `new` / Verifies `value` and `next` after `new` |
+| **Node**: inicializar otro nodo, enlazar y recorrer | Sí | `data_structures_basics_tests.pl:49-50` | Verifica `get_value(get_next(a))` y enlace de `b` / Verifies `get_value(get_next(a))` and `b`'s link |
+| **LinkedList**: estado vacío | Sí | `data_structures_basics_tests.pl:57-59` | `is_empty`, `size`, `head_value` tras `new` / `is_empty`, `size`, `head_value` after `new` |
+| **LinkedList**: insertar por ambos extremos | Sí | `data_structures_basics_tests.pl:66-67` | Cuatro inserciones y recorrido completo / Four insertions and full traversal |
+| **LinkedList**: eliminar primera aparición | Sí | `data_structures_basics_tests.pl:70-72` | `delete(10)` y verificación de recorrido y tamaño / `delete(10)` and traversal and size verification |
+| **LinkedList**: valor ausente | Sí | `data_structures_basics_tests.pl:75-77` | `delete(99)` falla sin cambiar estado / `delete(99)` fails without changing state |
+| **LinkedList**: vaciar | Sí | `data_structures_basics_tests.pl:80-85` | Tres `delete` exitosos y verificación de vacío / Three successful `delete`s and empty verification |
+| **Stack**: estado vacío y extracción fallida | Sí | `data_structures_basics_tests.pl:92-95` | `is_empty`, `size`, `peek`, `pop` tras `new` / `is_empty`, `size`, `peek`, `pop` after `new` |
+| **Stack**: LIFO y `peek` no mutante | Sí | `data_structures_basics_tests.pl:101-102` | Tres `push` y verificación de `peek` y `size` / Three `push`es and `peek` and `size` verification |
+| **Stack**: extracción y reutilización | Sí | `data_structures_basics_tests.pl:105-111` | `pop`, `push`, tres `pop` y verificación de vacío / `pop`, `push`, three `pop`s and empty verification |
+| **Stack**: vacío tras extracción | Sí | `data_structures_basics_tests.pl:114-115` | `pop` devuelve `-1` y `is_empty` sigue verdadero / `pop` returns `-1` and `is_empty` remains true |
+| **Queue**: estado vacío y extracción fallida | Sí | `data_structures_basics_tests.pl:122-125` | `is_empty`, `size`, `peek`, `dequeue` tras `new` / `is_empty`, `size`, `peek`, `dequeue` after `new` |
+| **Queue**: FIFO y `peek` no mutante | Sí | `data_structures_basics_tests.pl:131-132` | Tres `enqueue` y verificación de `peek` y `size` / Three `enqueue`s and `peek` and `size` verification |
+| **Queue**: extracción y reutilización | Sí | `data_structures_basics_tests.pl:135-141` | `dequeue`, `enqueue`, tres `dequeue` y verificación de vacío / `dequeue`, `enqueue`, three `dequeue`s and empty verification |
+| **Queue**: vacío tras extracción | Sí | `data_structures_basics_tests.pl:144-145` | `dequeue` devuelve `-1` y `is_empty` sigue verdadero / `dequeue` returns `-1` and `is_empty` remains true |
 
 ## ⚠️ Limitaciones conocidas / Known limitations
 

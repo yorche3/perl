@@ -166,8 +166,8 @@ Files=1, Tests=3,  0 wallclock secs
 Result: PASS
 ```
 
-> **ES:** 3 tests en total (un subtest por algoritmo); los 24 casos viven como `is_deeply` dentro de ellos (8 por algoritmo), todos pasando.
-> **EN:** 3 tests in total (one subtest per algorithm); the 24 cases live as `is_deeply` checks within them (8 per algorithm), all passing.
+> **ES:** Extracto de la salida real con la línea de resultado de cada `subtest`: 3 tests en total (un subtest por algoritmo); los 24 casos viven como `is_deeply` dentro de ellos (8 por algoritmo), todos pasando. Test2 imprime además el detalle de cada caso.
+> **EN:** Excerpt of the actual output with each `subtest`'s result line: 3 tests in total (one subtest per algorithm); the 24 cases live as `is_deeply` checks within them (8 per algorithm), all passing. Test2 also prints the detail of every case.
 
 ---
 

@@ -182,8 +182,8 @@ Files=2, Tests=10,  0 wallclock secs
 Result: PASS
 ```
 
-> **ES:** 10 tests en total (5 subtests por suite); los 22 casos viven como `is` dentro de ellos, todos pasando.
-> **EN:** 10 tests in total (5 subtests per suite); the 22 cases live as `is` checks within them, all passing.
+> **ES:** Extracto de la suite recursiva con la línea de resultado de cada `subtest`: 10 tests en total (5 subtests por suite); los 22 casos viven como `is` dentro de ellos, todos pasando. Test2 imprime además el detalle de cada caso.
+> **EN:** Excerpt of the recursive suite with each `subtest`'s result line: 10 tests in total (5 subtests per suite); the 22 cases live as `is` checks within them, all passing. Test2 also prints the detail of every case.
 
 ---
 
