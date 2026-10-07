@@ -27,13 +27,13 @@ perl/
         │   └── README.md
         ├── unit_test/
         │   └── calculator/        # 03_Unit_Test_Calculator — Pruebas unitarias
-        │       ├── src/
+        │       ├── lib/
         │       │   └── calculator.pl
         │       ├── test/
         │       │   └── calculator_test.pl
         │       └── README.md
         └── numbers/               # 04_Numbers — Algoritmos numéricos
-            ├── src/
+            ├── lib/
             │   └── numbers.pl
             ├── test/
             │   ├── recursive_tests.pl
@@ -59,13 +59,13 @@ perl/
 **ES:** Los proyectos en esta sección siguen un patrón progresivo:
 
 1. **Hello World** y **Hello User**: Programas de un solo archivo, ejecutados directamente con `perl`. Usan exclusivamente la biblioteca estándar.
-2. **Calculator**: Primer proyecto con framework de pruebas externo (**Test2::Bundle::More**, el bundle recomendado de la arquitectura Test2). Introduce la separación `src/` + `test/` y el runner de Test2 (`perl test/...` o `prove`).
+2. **Calculator**: Primer proyecto con framework de pruebas externo (**Test2::Bundle::More**, el bundle recomendado de la arquitectura Test2). Introduce la separación `lib/` + `test/` y el runner de Test2 (`perl test/...` o `prove`).
 3. **Numbers**: Expande el patrón de Calculator a dos suites de prueba (una por enfoque probado). Perl **no garantiza TCO**, por lo que `_acc` se conserva como puente didáctico sin pruebas propias: `_rec` + `_ite` = 10 tests (22 casos).
 
 **EN:** The projects in this section follow a progressive pattern:
 
 1. **Hello World** and **Hello User**: Single-file programs, run directly with `perl`. Use only the standard library.
-2. **Calculator**: First project with an external test framework (**Test2::Bundle::More**, the recommended bundle of the Test2 architecture). Introduces the `src/` + `test/` separation and Test2's runner (`perl test/...` or `prove`).
+2. **Calculator**: First project with an external test framework (**Test2::Bundle::More**, the recommended bundle of the Test2 architecture). Introduces the `lib/` + `test/` separation and Test2's runner (`perl test/...` or `prove`).
 3. **Numbers**: Expands the Calculator pattern to two test suites (one per tested approach). Perl **does not guarantee TCO**, so `_acc` is kept as an educational bridge without dedicated tests: `_rec` + `_ite` = 10 tests (22 cases).
 
 ---

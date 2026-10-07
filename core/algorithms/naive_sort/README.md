@@ -10,14 +10,14 @@ Tres algoritmos de ordenación con coste $O(n^2)$: **selection sort**, **bubble 
 
 | Archivo | Propósito |
 |---------|-----------|
-| [`src/naive_sort.pl`](src/naive_sort.pl) | Módulo `naive_sort` — 3 funciones de ordenación. |
+| [`lib/naive_sort.pl`](lib/naive_sort.pl) | Módulo `naive_sort` — 3 funciones de ordenación. |
 | [`test/naive_sort_tests.pl`](test/naive_sort_tests.pl) | Suite única: 3 tests (8 casos cada uno). |
 
 **Estructura de directorios esperada:**
 
 ```text
 naive_sort/
-├── src/
+├── lib/
 │   └── naive_sort.pl          # selection_sort, bubble_sort, insertion_sort
 └── test/
     └── naive_sort_tests.pl    # 3 tests, 8 casos cada uno
@@ -31,9 +31,9 @@ naive_sort/
 
 ## 🛠️ Enfoque y construcción / Approach & Build
 
-**ES:** Sigue el mismo patrón que [`numbers`](../../foundations/numbers/) y [`calculator`](../../foundations/unit_test/calculator/): módulo `.pl` en `src/` con `use strict; use warnings;` y terminado en `1;` (lo exige `require`), y una suite en `test/` con Test2::Bundle::More. Las tres funciones se declaran con `sub` y son globales del paquete `main`, así que la suite las llama por su nombre tras el `require`.
+**ES:** Sigue el mismo patrón que [`numbers`](../../foundations/numbers/) y [`calculator`](../../foundations/unit_test/calculator/): módulo `.pl` en `lib/` con `use strict; use warnings;` y terminado en `1;` (lo exige `require`), y una suite en `test/` con Test2::Bundle::More. Las tres funciones se declaran con `sub` y son globales del paquete `main`, así que la suite las llama por su nombre tras el `require`.
 
-**EN:** Follows the same pattern as [`numbers`](../../foundations/numbers/) and [`calculator`](../../foundations/unit_test/calculator/): a `.pl` module in `src/` with `use strict; use warnings;` ending in `1;` (required by `require`), and a suite in `test/` using Test2::Bundle::More. All three functions are declared with `sub` and are globals of the `main` package, so the suite calls them by name after the `require`.
+**EN:** Follows the same pattern as [`numbers`](../../foundations/numbers/) and [`calculator`](../../foundations/unit_test/calculator/): a `.pl` module in `lib/` with `use strict; use warnings;` ending in `1;` (required by `require`), and a suite in `test/` using Test2::Bundle::More. All three functions are declared with `sub` and are globals of the `main` package, so the suite calls them by name after the `require`.
 
 **Combinación aplicada:** algoritmo iterativo (la especificación no usa recursión) → **1 suite × 3 tests = 3 tests (24 casos)**.
 
@@ -41,15 +41,15 @@ naive_sort/
 
 ### Inicialización / Initialization
 
-**ES:** La estructura de este lenguaje es manual (✍️ `mkdir -p src test` en la guía de inicialización): no hay comando de andamiaje que ejecutar, y el módulo se compone a mano igual que `numbers/`.
+**ES:** La estructura de este lenguaje es manual (✍️ `mkdir -p lib test` en la guía de inicialización): no hay comando de andamiaje que ejecutar, y el módulo se compone a mano igual que `numbers/`.
 
-**EN:** This language's structure is manual (✍️ `mkdir -p src test` in the initialization guide): there is no scaffolding command to run, and the module is assembled by hand just like `numbers/`.
+**EN:** This language's structure is manual (✍️ `mkdir -p lib test` in the initialization guide): there is no scaffolding command to run, and the module is assembled by hand just like `numbers/`.
 
 ---
 
 ## 📄 Archivos de configuración clave / Key Configuration Files
 
-### `src/naive_sort.pl` — Implementación
+### `lib/naive_sort.pl` — Implementación
 
 **ES:** Las tres funciones reciben un **arrayref**, lo ordenan *in-place* y devuelven ese mismo arrayref. Si la entrada es `undef`, devuelven `undef` como indicador de fallo. Extracto de `selection_sort`:
 
@@ -115,8 +115,8 @@ sub assert_sorts_all_cases {
 ```bash
 perl --version
 
-# Instalar Test2-Suite (una sola vez)
-sudo cpan Test2::Suite
+# Instalar Test2-Suite (una sola vez, con el intérprete que ejecuta las suites)
+cpan -i Test2::Suite
 
 # Verificar instalación
 perl -MTest2::Bundle::More -e1
@@ -130,7 +130,7 @@ perl -MTest2::Bundle::More -e1
 
 ```bash
 cd perl/core/algorithms/naive_sort
-perl -c src/naive_sort.pl
+perl -c lib/naive_sort.pl
 perl -c test/naive_sort_tests.pl
 ```
 
@@ -266,7 +266,7 @@ done_testing;
 
 | Especificación | Implementación | Motivo |
 |----------------|----------------|--------|
-| `src/naive_sort.ext` | `src/naive_sort.pl` | El nombre coincide exactamente; solo cambia la extensión. |
+| `src/naive_sort.ext` | `lib/naive_sort.pl` | El nombre coincide exactamente; cambia el directorio (el repositorio usa `lib/` para el código fuente) y la extensión. |
 | `test/naive_sort_test.ext` | `test/naive_sort_tests.pl` | La convención de `numbers/` para las suites es el sufijo plural `_tests.pl` (`recursive_tests.pl`, `iterative_tests.pl`). |
 | `test/run_tests.ext` | *(no existe)* | `prove` descubre y ejecuta las suites de `test/` con `--ext=.pl`. Ni `numbers/` ni `calculator/` incluyen un runner propio. |
 

@@ -8,18 +8,26 @@ Implementación de la especificación [03_Unit_Test_Calculator](https://yorche3.
 
 | Archivo | Propósito |
 |---------|-----------|
-| [`src/calculator.pl`](src/calculator.pl) | Módulo con las 5 operaciones aritméticas (subrutinas + `use strict`/`use warnings`). |
+| [`lib/calculator.pl`](lib/calculator.pl) | Módulo con las 5 operaciones aritméticas (subrutinas + `use strict`/`use warnings`). |
 | [`test/calculator_test.pl`](test/calculator_test.pl) | 5 pruebas unitarias con `Test2::Bundle::More` (`is` + `done_testing`). |
 
 **Estructura de directorios esperada:**
 
 ```text
 calculator/
-├── src/
+├── lib/
 │   └── calculator.pl            # 5 operaciones aritméticas
 └── test/
     └── calculator_test.pl       # 5 tests con Test2::Bundle::More
 ```
+
+---
+
+## 📍 Desviaciones respecto a la ubicación esperada / Deviations from the expected location
+
+| Especificación | Implementación | Motivo |
+|----------------|----------------|--------|
+| `src/calculator.ext` | `lib/calculator.pl` | Cambia el directorio: el repositorio usa `lib/` para el código fuente en todos los módulos de Perl. La extensión se ajusta a la del intérprete. |
 
 ---
 
@@ -45,7 +53,7 @@ calculator/
 
 No se requieren archivos de configuración de build: el intérprete (`perl`) y el harness (`prove`) se invocan directamente desde línea de comandos.
 
-### `src/calculator.pl` — Módulo principal
+### `lib/calculator.pl` — Módulo principal
 
 | Operación | Implementación educativa |
 | --------- | ------------------------ |
@@ -111,7 +119,7 @@ use strict;
 use warnings;
 
 use FindBin;
-require "$FindBin::Bin/../src/calculator.pl";
+require "$FindBin::Bin/../lib/calculator.pl";
 
 use Test2::Bundle::More;
 
@@ -138,8 +146,8 @@ perl --version
 ### Requisito: Test2-Suite (Test2::Bundle::More)
 
 ```bash
-# System-wide (con sudo)
-sudo cpan Test2::Suite
+# Con el intérprete que ejecuta las suites (sin sudo)
+cpan -i Test2::Suite
 
 # Verificar instalación
 perl -MTest2::Bundle::More -e1

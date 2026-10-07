@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 use FindBin;
-require "$FindBin::Bin/../src/numbers.pl";
+require "$FindBin::Bin/../lib/numbers.pl";
 
 use Test2::Bundle::More;
 

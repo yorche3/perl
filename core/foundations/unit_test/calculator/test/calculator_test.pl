@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 use FindBin;
-require "$FindBin::Bin/../src/calculator.pl";
+require "$FindBin::Bin/../lib/calculator.pl";
 
 use Test2::Bundle::More;
 
