@@ -8,13 +8,13 @@ Implementación de la especificación [01_Hello_World](https://yorche3.github.io
 
 | Archivo | Propósito |
 |---------|-----------|
-| [`helloworld.pl`](helloworld.pl) | Código fuente: imprime `"Hello, World! from Perl!"` en la salida estándar. |
+| [`hello_world.pl`](hello_world.pl) | Código fuente: imprime `"Hello, World! from Perl!"` en la salida estándar. |
 
 **Estructura de directorios esperada:**
 
 ```text
 helloworld/
-├── helloworld.pl   # Código fuente
+├── hello_world.pl   # Código fuente
 └── README.md       # Este archivo
 ```
 
@@ -34,7 +34,7 @@ helloworld/
    mkdir -p perl/core/foundations/helloworld
    ```
 
-2. Escribir el archivo `helloworld.pl` con el código fuente.
+2. Escribir el archivo `hello_world.pl` con el código fuente.
 
 3. No se necesita ningún paso adicional de construcción o vinculación de dependencias.
 
@@ -74,21 +74,21 @@ perl --version
 
 ```bash
 cd perl/core/foundations/helloworld
-perl helloworld.pl
+perl hello_world.pl
 ```
 
 ### Ejecutar directamente (gracias al shebang) / Run directly (thanks to the shebang)
 
 ```bash
 cd perl/core/foundations/helloworld
-chmod +x helloworld.pl
-./helloworld.pl
+chmod +x hello_world.pl
+./hello_world.pl
 ```
 
 ### Verificar sintaxis sin ejecutar / Check syntax without running
 
 ```bash
-perl -c helloworld.pl
+perl -c hello_world.pl
 ```
 
 ### Salida esperada / Expected output
