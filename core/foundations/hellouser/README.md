@@ -10,13 +10,13 @@ Lee un nombre desde la entrada estándar y saluda al usuario.
 
 | Archivo | Propósito |
 |---------|-----------|
-| [`hellouser.pl`](hellouser.pl) | Código fuente: solicita un nombre al usuario y saluda. |
+| [`hello_user.pl`](hello_user.pl) | Código fuente: solicita un nombre al usuario y saluda. |
 
 **Estructura de directorios esperada:**
 
 ```text
 hellouser/
-├── hellouser.pl    # Código fuente
+├── hello_user.pl    # Código fuente
 └── README.md       # Este archivo
 ```
 
@@ -46,7 +46,7 @@ hellouser/
    mkdir -p perl/core/foundations/hellouser
    ```
 
-2. Escribir el archivo `hellouser.pl` con el código fuente.
+2. Escribir el archivo `hello_user.pl` con el código fuente.
 
 3. No se necesita ningún paso adicional de construcción o vinculación de dependencias.
 
@@ -110,21 +110,21 @@ perl --version
 
 ```bash
 cd perl/core/foundations/hellouser
-perl hellouser.pl
+perl hello_user.pl
 ```
 
 ### Ejecutar directamente (gracias al shebang) / Run directly (thanks to the shebang)
 
 ```bash
 cd perl/core/foundations/hellouser
-chmod +x hellouser.pl
-./hellouser.pl
+chmod +x hello_user.pl
+./hello_user.pl
 ```
 
 ### Verificar sintaxis sin ejecutar / Check syntax without running
 
 ```bash
-perl -c hellouser.pl
+perl -c hello_user.pl
 ```
 
 ### Salida esperada / Expected output
