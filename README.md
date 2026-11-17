@@ -9,7 +9,7 @@ Proyectos en **Perl (5.38+)**, con programas simples ejecutados con el intérpre
 | Módulo | Descripción |
 | ------ | ----------- |
 | [`core/foundations/`](core/foundations/) | **Fase 0 — Fundamentos**: `helloworld`, `hellouser`, `unit_test/calculator`, `numbers` |
-| [`core/algorithms/`](core/algorithms/) | **Fase 1 — Algoritmos Puros**: `naive_sort`, `data_structures_basics` |
+| [`core/algorithms/`](core/algorithms/) | **Fase 1 — Algoritmos Puros**: `naive_sort`, `data_structures_basics`, `data_structures_advanced` |
 
 ---
 
@@ -39,6 +39,10 @@ prove --ext=.pl test/
 # Data Structures Basics Tests
 cd core/algorithms/data_structures_basics
 perl -Ilib test/data_structures_basics_tests.pl
+
+# Data Structures Advanced Tests
+cd core/algorithms/data_structures_advanced
+perl -Ilib test/data_structures_advanced_tests.pl
 ```
 
 ---
