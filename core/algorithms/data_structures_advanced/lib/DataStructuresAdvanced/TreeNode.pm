@@ -7,29 +7,32 @@ use parent 'DataStructuresAdvanced::Node';
 # new(value => $value) -> TreeNode; value() is inherited.
 sub new {
     my ($class, %args) = @_;
-    return undef;
+    my $self = $class->SUPER::new(%args);
+    $self->{left} = undef;
+    $self->{right} = undef;
+    return $self;
 }
 
 # left() and right() -> TreeNode or undef.
 sub left {
     my ($self) = @_;
-    return undef;
+    return $self->{left};
 }
 
 sub right {
     my ($self) = @_;
-    return undef;
+    return $self->{right};
 }
 
 # set_left($node) and set_right($node) accept a TreeNode or undef.
 sub set_left {
     my ($self, $node) = @_;
-    return undef;
+    $self->{left} = $node;
 }
 
 sub set_right {
     my ($self, $node) = @_;
-    return undef;
+    $self->{right} = $node;
 }
 
 1;

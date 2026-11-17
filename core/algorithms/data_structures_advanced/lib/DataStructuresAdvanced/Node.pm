@@ -6,12 +6,12 @@ use warnings;
 # new(value => $value) -> Node; value() -> integer.
 sub new {
     my ($class, %args) = @_;
-    return undef;
+    return bless { value => $args{value} }, $class;
 }
 
 sub value {
     my ($self) = @_;
-    return undef;
+    return $self->{value};
 }
 
 1;
