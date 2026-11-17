@@ -12,6 +12,7 @@ Los módulos de esta fase trabajan sobre **arrayrefs** (`[...]`), que en Perl **
 |--------|---------------|---------|:-----:|:------:|
 | [`naive_sort/`](naive_sort/) | [05_Naive_Sort](https://yorche3.github.io/programming_languages/core/algorithms/05_Naive_Sort/) | `prove --ext=.pl test/` + Test2 | 3 | ✅ |
 | [`data_structures_basics/`](data_structures_basics/) | [06_Data_Structures_Basics](https://yorche3.github.io/programming_languages/core/algorithms/06_Data_Structures_Basics/) | `perl -Ilib test/data_structures_basics_tests.pl` + Test2 + Moo | 4 | ✅ |
+| [`data_structures_advanced/`](data_structures_advanced/) | [07_Data_Structures_Advanced](https://yorche3.github.io/programming_languages/core/algorithms/07_Data_Structures_Advanced/) | `perl -Ilib test/data_structures_advanced_tests.pl` + Test2 | 3 | ✅ |
 
 ---
 
@@ -25,7 +26,7 @@ algorithms/
 │   ├── test/
 │   │   └── naive_sort_tests.pl  # 3 tests × 8 casos
 │   └── README.md
-└── data_structures_basics/      # 06_Data_Structures_Basics
+├── data_structures_basics/      # 06_Data_Structures_Basics
     ├── lib/
     │   └── DataStructuresBasics/
     │       ├── Node.pm           # Nodo enlazado compartido
@@ -34,6 +35,18 @@ algorithms/
     │       └── Queue.pm          # Cola FIFO
     ├── test/
     │   └── data_structures_basics_tests.pl  # 4 subtests
+    └── README.md
+└── data_structures_advanced/    # 07_Data_Structures_Advanced
+    ├── lib/
+    │   ├── data_structures_advanced.pl
+    │   └── DataStructuresAdvanced/
+    │       ├── Node.pm          # Nodo base con valor
+    │       ├── TreeNode.pm      # Nodo de árbol binario (left, right)
+    │       ├── BinaryTree.pm    # Árbol binario de búsqueda (BST)
+    │       ├── GraphNode.pm     # Nodo interno de grafo (adyacencia y next_vertex)
+    │       └── Graph.pm         # Grafo dirigido con registro enlazado
+    ├── test/
+    │   └── data_structures_advanced_tests.pl  # 3 subtests
     └── README.md
 ```
 
@@ -72,6 +85,10 @@ prove --ext=.pl test/
 # Data Structures Basics Tests
 cd data_structures_basics
 perl -Ilib test/data_structures_basics_tests.pl
+
+# Data Structures Advanced Tests
+cd data_structures_advanced
+perl -Ilib test/data_structures_advanced_tests.pl
 ```
 
 ---
