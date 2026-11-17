@@ -1,0 +1,7 @@
+blib/
+_build/
+cover_db/
+nytprof.out
+MYMETA.*
+*.o
+*.bs
